@@ -13,6 +13,8 @@
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
+    "@fontsource/orbitron": "^5.2.8",
+    "@fontsource/rajdhani": "^5.2.7",
     "astro": "^5.17.1",
     "sharp": "^0.34.3"
   },

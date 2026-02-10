@@ -6,43 +6,246 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4em 1em;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 200%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, var(--racing-orange), transparent);
+			}
+			
+			.hero h1 {
+				font-size: 3em;
+				margin-bottom: 0.3em;
+				background: linear-gradient(135deg, var(--white) 0%, var(--racing-orange) 50%, var(--neon-blue) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			
+			.hero-subtitle {
+				font-size: 1.3em;
+				color: var(--text-secondary);
+				margin-bottom: 2em;
+				font-weight: 300;
+			}
+			
+			.cta-buttons {
+				display: flex;
+				gap: 1em;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			
+			.cta-btn {
+				padding: 0.8em 2em;
+				font-family: 'Orbitron', sans-serif;
+				font-weight: 600;
+				font-size: 0.9em;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				border: 2px solid var(--racing-orange);
+				background: transparent;
+				color: var(--racing-orange);
+				cursor: pointer;
+				transition: all 0.3s ease;
+				text-decoration: none;
+				display: inline-block;
+			}
+			
+			.cta-btn:hover {
+				background: var(--racing-orange);
+				color: var(--carbon-black);
+				box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+			}
+			
+			.cta-btn.primary {
+				background: var(--racing-orange);
+				color: var(--carbon-black);
+			}
+			
+			.cta-btn.primary:hover {
+				background: transparent;
+				color: var(--racing-orange);
+			}
+			
+			.features {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2em;
+				margin: 3em 0;
+			}
+			
+			.feature-card {
+				background: var(--bg-card);
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				padding: 1.5em;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.feature-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 3px;
+				background: linear-gradient(90deg, var(--racing-orange), var(--neon-blue));
+				transform: scaleX(0);
+				transition: transform 0.3s ease;
+			}
+			
+			.feature-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+				border-color: var(--racing-orange);
+			}
+			
+			.feature-card:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.feature-icon {
+				font-size: 2em;
+				margin-bottom: 0.5em;
+			}
+			
+			.feature-card h3 {
+				font-size: 1.2em;
+				margin-bottom: 0.5em;
+				color: var(--white);
+			}
+			
+			.feature-card p {
+				color: var(--text-secondary);
+				font-size: 0.95em;
+				margin: 0;
+			}
+			
+			.latest-posts {
+				margin-top: 4em;
+			}
+			
+			.latest-posts h2 {
+				text-align: center;
+				margin-bottom: 1em;
+			}
+			
+			.post-list {
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+			}
+			
+			.post-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1em 1.5em;
+				background: var(--bg-secondary);
+				border-left: 4px solid var(--racing-orange);
+				text-decoration: none;
+				transition: all 0.3s ease;
+			}
+			
+			.post-item:hover {
+				background: var(--bg-card);
+				transform: translateX(10px);
+				border-left-color: var(--neon-blue);
+			}
+			
+			.post-title {
+				font-family: 'Orbitron', sans-serif;
+				color: var(--white);
+				font-weight: 500;
+			}
+			
+			.post-date {
+				color: var(--chrome);
+				font-size: 0.85em;
+			}
+			
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 2em;
+				}
+				
+				.hero-subtitle {
+					font-size: 1em;
+				}
+				
+				.post-item {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.5em;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<h1>极速车讯</h1>
+				<p class="hero-subtitle">探索汽车世界的每一个精彩瞬间</p>
+				<div class="cta-buttons">
+					<a href="/blog" class="cta-btn primary">浏览资讯</a>
+					<a href="/about" class="cta-btn">了解更多</a>
+				</div>
+			</section>
+			
+			<section class="features">
+				<div class="feature-card">
+					<div class="feature-icon">🏎️</div>
+					<h3>新车评测</h3>
+					<p>深度体验最新车型，从动力到操控全方位解析</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">⚡</div>
+					<h3>新能源</h3>
+					<p>聚焦电动化浪潮，解读智能出行未来趋势</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🔧</div>
+					<h3>改装文化</h3>
+					<p>分享改装案例，探讨汽车个性化表达</p>
+				</div>
+			</section>
+			
+			<section class="latest-posts">
+				<h2>最新文章</h2>
+				<div class="post-list">
+					<a href="/blog/first-post" class="post-item">
+						<span class="post-title">2026年新能源汽车市场展望</span>
+						<span class="post-date">2026-02-10</span>
+					</a>
+					<a href="/blog/second-post" class="post-item">
+						<span class="post-title">深度试驾：新一代电动超跑</span>
+						<span class="post-date">2026-02-09</span>
+					</a>
+					<a href="/blog/third-post" class="post-item">
+						<span class="post-title">改装指南：如何提升操控性能</span>
+						<span class="post-date">2026-02-08</span>
+					</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
